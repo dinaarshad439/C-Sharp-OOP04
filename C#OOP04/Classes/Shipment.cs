@@ -1,10 +1,15 @@
 ﻿
 
+using C_OOP04.Interfaces;
 using C_OOP04.Struct;
+using System.Net.NetworkInformation;
 
 namespace C_OOP04.Classes
 {
-    internal abstract class Shipment
+    /// <summary>
+    /// Represents a shipment with tracking, delivery, destination, and cost information.
+    /// </summary>
+    internal abstract class Shipment:ITrackable,IInsurable
     {
         #region Private Fields
 
@@ -57,7 +62,7 @@ namespace C_OOP04.Classes
         {
             get { return deliveryFee; }
 
-            private set
+            protected set
             {
                 if (value > 0)
                     deliveryFee = value;
@@ -65,6 +70,8 @@ namespace C_OOP04.Classes
         }
 
         public abstract decimal EstimatedCost { get ; }
+
+        public string status { get; set; } = "ready";
 
         #endregion
 
@@ -116,6 +123,14 @@ namespace C_OOP04.Classes
         }
 
         public abstract void PrintShipment();
+
+        public string GetTrackingStatus()
+        {
+            return $"Shipment {TrackingCode} is {status}.";
+        }
+
+        public abstract decimal CalculateInsurance();
+        
 
         #endregion
     }

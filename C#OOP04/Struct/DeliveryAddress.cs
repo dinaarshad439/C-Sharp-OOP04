@@ -5,7 +5,7 @@ namespace C_OOP04.Struct
     /// <summary>
     /// Represents a delivery address with city, street, and building number.
     /// </summary>
-    internal class DeliveryAddress
+    internal struct DeliveryAddress
     {
         #region fields
         public string City;
