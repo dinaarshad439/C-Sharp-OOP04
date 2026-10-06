@@ -1,5 +1,7 @@
 ﻿
 
+using C_OOP04.Interfaces;
+
 namespace C_OOP04.Classes
 {
     /// <summary>
@@ -112,10 +114,48 @@ namespace C_OOP04.Classes
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        public void PrintTrackingStatuses()
+        {
+            Console.WriteLine("Tracking Status");
+            foreach (ITrackable? t in shipments)
+            {
+                
+                if (t != null)
+                {
+                    Console.WriteLine(t.GetTrackingStatus()); 
+                }
+            }
+            Console.WriteLine("---------------------------------------------");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PrintCalculatedInsurance()
+        {
+            Console.WriteLine("Insurance");
+            foreach (IInsurable? i in shipments)
+            {
+                
+                if (i != null)
+                {
+                    Console.WriteLine($"Insurance: {i.CalculateInsurance():0.00} EGP"); 
+                }
+            }
+            Console.WriteLine("---------------------------------------------");
+        }
+
+        /// <summary>
         /// Prints all stored shipments in the delivery center.
         /// </summary>
         public void PrintAllShipments()
         {
+            Console.WriteLine("=============================================");
+            Console.WriteLine(CenterName); 
+            Console.WriteLine("=============================================");
+
             foreach (var shipment in shipments)
             {
                 if (shipment != null)
