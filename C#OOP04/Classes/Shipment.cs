@@ -85,13 +85,14 @@ namespace C_OOP04.Classes
             Destination = default;
         }
 
-        public Shipment(string _trackingCode, string _description, decimal _weight, decimal _deliveryFee, DeliveryAddress _destination)
+        public Shipment(string _trackingCode, string _description, decimal _weight, decimal _deliveryFee, DeliveryAddress _destination, string _status)
         {
             TrackingCode = _trackingCode;
             Description = _description;
             Weight = _weight;
             DeliveryFee = _deliveryFee;
             Destination = _destination;
+            status = _status;
         }
 
         #endregion

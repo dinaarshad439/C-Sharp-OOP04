@@ -114,7 +114,7 @@ namespace C_OOP04.Classes
         }
 
         /// <summary>
-        /// 
+        /// Iterates through all stored shipments and prints their current tracking status using interface polymorphism.
         /// </summary>
         public void PrintTrackingStatuses()
         {
@@ -127,24 +127,29 @@ namespace C_OOP04.Classes
                     Console.WriteLine(t.GetTrackingStatus()); 
                 }
             }
-            Console.WriteLine("---------------------------------------------");
+            
         }
 
         /// <summary>
-        /// 
+        /// Iterates through all shipments and prints their calculated insurance cost using interface polymorphism.
         /// </summary>
         public void PrintCalculatedInsurance()
         {
             Console.WriteLine("Insurance");
-            foreach (IInsurable? i in shipments)
+            foreach (IInsurable? insure in shipments)
             {
-                
-                if (i != null)
+
+                if (insure is IInsurable i)
                 {
-                    Console.WriteLine($"Insurance: {i.CalculateInsurance():0.00} EGP"); 
+                    if (insure is StandardShipment)
+                        Console.WriteLine($"Standard Shipment Insurance : {i.CalculateInsurance():0.00} EGP\n");
+                    else if (insure is ExpressShipment)
+                        Console.WriteLine($"Express Shipment Insurance  : {i.CalculateInsurance():0.00} EGP\n");
+                    else if (insure is InternationalShipment)
+                        Console.WriteLine($"International Shipment Insurance : {i.CalculateInsurance():0.00} EGP\n");
                 }
             }
-            Console.WriteLine("---------------------------------------------");
+            
         }
 
         /// <summary>
@@ -155,13 +160,14 @@ namespace C_OOP04.Classes
             Console.WriteLine("=============================================");
             Console.WriteLine(CenterName); 
             Console.WriteLine("=============================================");
+            
 
             foreach (var shipment in shipments)
             {
                 if (shipment != null)
                 {
                     shipment.PrintShipment();
-                    Console.WriteLine("--------------------------------------");
+                    Console.WriteLine("=============================================");
                 }
             }
         }

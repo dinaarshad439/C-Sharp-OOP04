@@ -1,4 +1,8 @@
-﻿namespace C_OOP04
+﻿using C_OOP04.Classes;
+using C_OOP04.Interfaces;
+using C_OOP04.Struct;
+
+namespace C_OOP04
 {
     internal class Program
     {
@@ -46,7 +50,186 @@
 
             #endregion
 
+            #region Practical Questions
 
+            
+            DeliveryCenter center = new DeliveryCenter("Delivery Center");
+            
+            //a
+            Console.WriteLine("====================================================");
+            Console.WriteLine("Enter the standard shipment");
+            ReadShipmentData(
+                out string? trackingCode,
+                out string? description,
+                out decimal weight,
+                out decimal deliveryFee,
+                out DeliveryAddress destination
+            );
+
+            StandardShipment standard = new StandardShipment(
+                trackingCode,
+                description,
+                weight,
+                deliveryFee,
+                destination,
+                "Ready."
+            );
+
+
+            //b
+            Console.WriteLine("======================================================");
+            Console.WriteLine("Enter the express shipment");
+            ReadShipmentData(
+                 out trackingCode,
+                 out description,
+                 out weight,
+                 out deliveryFee,
+                 out destination
+);
+
+            Console.WriteLine("Enter Extra Fee:");
+            decimal extraFee = decimal.Parse(Console.ReadLine());
+
+            ExpressShipment express = new ExpressShipment(
+                trackingCode,
+                description,
+                weight,
+                deliveryFee,
+                destination,
+                extraFee,
+                "Out for Delivery."
+
+            );
+
+
+
+            //c
+            Console.WriteLine("====================================================");
+
+            Console.WriteLine("Enter the international shipment");
+            ReadShipmentData(
+              out trackingCode,
+              out description,
+              out weight,
+              out deliveryFee,
+              out destination
+            );
+
+            Console.WriteLine("Enter Destination Country:");
+            string? destinationCountry = Console.ReadLine();
+
+            Console.WriteLine("Enter Customs Fee:");
+            decimal customsFee = decimal.Parse(Console.ReadLine());
+
+            InternationalShipment international = new InternationalShipment(
+                trackingCode,
+                description,
+                weight,
+                deliveryFee,
+                destination,
+                destinationCountry,
+                customsFee,
+                "has been Delivered."
+            );
+
+            //d
+            center.AddShipment(standard);
+            center.AddShipment(express);
+            center.AddShipment(international);
+
+
+            //e
+            center.PrintAllShipments();
+
+            //f
+            Console.WriteLine("====================================================");
+
+            center.PrintTrackingStatuses();
+
+            //g
+            Console.WriteLine("====================================================");
+
+            center.PrintCalculatedInsurance();
+
+            //h
+            Console.WriteLine("====================================================");
+
+            ITrackable[] track=new ITrackable[] 
+            {
+                  standard,
+                  express,
+                  international
+
+            };
+
+            foreach(var tracks in track)
+            {
+                Console.WriteLine("Tracking status: ");
+                Console.WriteLine(tracks.GetTrackingStatus());
+            }
+
+
+            //i
+            Console.WriteLine("====================================================");
+
+            IInsurable[] insurance = new IInsurable[]
+            {
+                standard,
+                express,
+               international
+            };
+
+            foreach (var insure in insurance)
+            {
+                Console.WriteLine("Insurance: ");
+                Console.WriteLine($"Insurance: {insure.CalculateInsurance():0.00} EGP");
+            }
+
+            Console.WriteLine("====================================================");
+            Console.WriteLine("Interface Polymorphism Demonstrated Successfully.");
+
+
+            #endregion
+        }
+
+        public static void ReadShipmentData(
+           out string? trackingCode,
+           out string? description,
+           out decimal weight,
+           out decimal deliveryFee,
+           out DeliveryAddress destination)
+        {
+            Console.WriteLine("Enter tracking code:");
+            trackingCode = Console.ReadLine();
+
+            Console.WriteLine("Enter description:");
+            description = Console.ReadLine();
+
+            Console.WriteLine("Enter weight:");
+            weight = decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter delivery fee:");
+            deliveryFee = decimal.Parse(Console.ReadLine());
+
+
+
+            Console.WriteLine("Enter City:");
+            string? city = Console.ReadLine();
+
+            Console.WriteLine("Enter street:");
+            string? street = Console.ReadLine();
+
+            bool flag = false;
+            int buildingNumber;
+
+            do
+            {
+                Console.WriteLine("Enter building number:");
+                flag = int.TryParse(Console.ReadLine(), out buildingNumber);
+
+            } while (!flag);
+
+            destination = new DeliveryAddress(city, street, buildingNumber);
         }
     }
 }

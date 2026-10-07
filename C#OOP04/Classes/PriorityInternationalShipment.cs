@@ -12,8 +12,8 @@ namespace C_OOP04.Classes
     internal class PriorityInternationalShipment: InternationalShipment
     {
         public PriorityInternationalShipment(string _trackingCode, string _description,
-           decimal _weight, decimal _deliveryFee, DeliveryAddress _destination, string _destinationCountry, decimal _customFee)
-           : base(_trackingCode, _description, _weight, _deliveryFee, _destination, _destinationCountry, _customFee) { }
+           decimal _weight, decimal _deliveryFee, DeliveryAddress _destination, string _destinationCountry, decimal _customFee,string _status)
+           : base(_trackingCode, _description, _weight, _deliveryFee, _destination, _destinationCountry, _customFee,_status) { }
 
         public override sealed void GenerateCustomsReport()
         {

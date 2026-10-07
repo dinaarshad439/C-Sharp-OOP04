@@ -45,8 +45,8 @@ namespace C_OOP04.Classes
         #region Constructor
 
         public InternationalShipment(string _trackingCode, string _description,
-            decimal _weight, decimal _deliveryFee, DeliveryAddress _destination, string _destinationCountry, decimal _customFee)
-            : base(_trackingCode, _description, _weight, _deliveryFee, _destination)
+            decimal _weight, decimal _deliveryFee, DeliveryAddress _destination, string _destinationCountry, decimal _customFee,string _status)
+            : base(_trackingCode, _description, _weight, _deliveryFee, _destination,_status)
         {
             DestinationCountry = _destinationCountry;
             CustomsFee = _customFee;
@@ -66,16 +66,15 @@ namespace C_OOP04.Classes
         public override void PrintShipment()
         {
             Console.WriteLine("--- International Shipment ---");
-            Console.WriteLine($"Tracking Code: {TrackingCode}");
-            Console.WriteLine($"Description: {Description}");
-            Console.WriteLine($"Weight: {Weight} KG");
-            Console.WriteLine($"Delivery Fee: {DeliveryFee} EGP");
-            Console.WriteLine($"Destination: {Destination.GetFullAddress()}");
-            Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
-            Console.WriteLine($"Destination Country: {DestinationCountry}");
-            Console.WriteLine($"Customs Fee: {CustomsFee} EGP");
+            Console.WriteLine("International Shipment\n");
+            Console.WriteLine($"Tracking Code       : {TrackingCode}");
+            Console.WriteLine($"Destination Country : {DestinationCountry}");
+            Console.WriteLine($"Estimated Cost      : {EstimatedCost} EGP\n");
         }
+    }
+
 
         #endregion
-    }
 }
+
+

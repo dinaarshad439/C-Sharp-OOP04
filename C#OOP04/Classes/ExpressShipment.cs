@@ -28,8 +28,8 @@ namespace C_OOP04.Classes
         }
 
         public ExpressShipment(string _trackingCode, string _description, decimal _weight,
-            decimal _deliveryFee, DeliveryAddress _destination, decimal _extraFee)
-            : base(_trackingCode, _description, _weight, _deliveryFee, _destination)
+            decimal _deliveryFee, DeliveryAddress _destination, decimal _extraFee,string _status)
+            : base(_trackingCode, _description, _weight, _deliveryFee, _destination,_status)
         {
             ExtraFee = _extraFee;
 
@@ -42,13 +42,11 @@ namespace C_OOP04.Classes
         public override void PrintShipment()
         {
             Console.WriteLine("--- Express Shipment ---");
-            Console.WriteLine($"Tracking Code: {TrackingCode}");
-            Console.WriteLine($"Description: {Description}");
-            Console.WriteLine($"Weight: {Weight} KG");
-            Console.WriteLine($"Delivery Fee: {DeliveryFee} EGP");
-            Console.WriteLine($"Destination: {Destination.GetFullAddress()}");
-            Console.WriteLine($"Estimated Cost: {EstimatedCost} EGP");
-            Console.WriteLine($"Extra Fee: {ExtraFee} EGP");
+            Console.WriteLine("Express Shipment\n");
+            Console.WriteLine($"Tracking Code  : {TrackingCode}");
+            Console.WriteLine($"Extra Fee      : {ExtraFee} EGP");
+            Console.WriteLine($"Estimated Cost : {EstimatedCost} EGP\n");
+            
         }
     }
 }
